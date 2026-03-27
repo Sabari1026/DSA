@@ -4,17 +4,25 @@ class Solution(object):
         :type s: str
         :rtype: str
         """
-        lst = list(s);
-        left = 0;
-        right = len(s)-1;
-        vowels = ['a','e','i','o','u','A','E','I','O','U'];
-        while left < right :
-            while left < right and lst[left] not in vowels:
-                left += 1;
-            while left < right and lst[right] not in vowels:
-                right -= 1;
-            lst[left], lst[right] = lst[right], lst[left];
-            left += 1;
-            right -= 1;
-    
-        return("".join(lst))
+        vowels = ("aeiouAEIOU")
+
+        s = list(s)
+        n = len(s)
+        i = 0
+        j = n - 1
+
+        while(i<j):
+            if s[i] in vowels and s[j] in vowels:
+                s[i],s[j] = s[j],s[i]
+                i+=1 
+                j-=1
+            elif s[j] not in vowels:
+                j-=1
+            elif s[i] not in vowels:
+                i+=1
+            # else:
+            #     i+=1
+            #     j-=1
+
+        s = "".join(s)
+        return s
